@@ -40,6 +40,12 @@
   font-size: 1em;
 }
 
+.sticky {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
 .link,
 .link:active,
 .link:visited {

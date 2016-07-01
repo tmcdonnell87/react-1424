@@ -14,6 +14,7 @@ import UniversalRouter from 'universal-router';
 import routes from './routes';
 import history from './core/history';
 import { readState, saveState } from 'history/lib/DOMStateStorage';
+import configureStore from './store/configureStore';
 import {
   addEventListener,
   removeEventListener,
@@ -22,6 +23,7 @@ import {
 } from './core/DOMUtils';
 
 const context = {
+  store: null,
   insertCss: (...styles) => {
     const removeCss = styles.map(style => style._insertCss()); // eslint-disable-line no-underscore-dangle, max-len
     return () => {
@@ -88,9 +90,16 @@ function render(container, state, component) {
 function run() {
   const container = document.getElementById('app');
   let currentLocation = history.getCurrentLocation();
+  const initialState = JSON.parse(
+    document.
+      getElementById('source').
+      getAttribute('data-initial-state')
+  );
 
   // Make taps on links and buttons work fast on mobiles
   FastClick.attach(document.body);
+
+  context.store = configureStore(initialState, {});
 
   // Re-render the app when window.location changes
   function onLocationChange(location) {

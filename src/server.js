@@ -24,6 +24,8 @@ import schema from './data/schema';
 import routes from './routes';
 import assets from './assets'; // eslint-disable-line import/no-unresolved
 import { port, auth, analytics } from './config';
+import configureStore from './store/configureStore';
+import { setRuntimeVariable } from './actions/runtime';
 
 const app = express();
 
@@ -91,6 +93,15 @@ app.get('*', async (req, res, next) => {
       data.trackingId = analytics.google.trackingId;
     }
 
+    const store = configureStore({}, {
+      cookie: req.headers.cookie,
+    });
+
+    store.dispatch(setRuntimeVariable({
+      name: 'initialNow',
+      value: Date.now(),
+    }));
+
     await UniversalRouter.resolve(routes, {
       path: req.path,
       query: req.query,
@@ -104,6 +115,7 @@ app.get('*', async (req, res, next) => {
       render(component, status = 200) {
         css = [];
         statusCode = status;
+        data.state = JSON.stringify(store.getState());
         data.body = ReactDOM.renderToString(component);
         data.css = css.join('');
         return true;
