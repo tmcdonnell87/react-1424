@@ -1,0 +1,92 @@
+
+.die {
+	border-top: 1px solid #f1f1f1;
+	width: 50px; height: 50px;
+	border-radius: 10px;
+	position: relative;
+	margin: 10px;
+	font-size: 6px;
+	display: inline-block;
+	box-shadow: 0px 5px 0 #CCC, 0 6px 3px #444, 0 10px 5px #999;
+    
+}
+
+.die::after {
+    content: "";
+	width: 20%; 
+	height: 20%; 
+	left: 50%; 
+	top: 50%;
+	margin: -10%;
+	border-radius: 50%;
+	display: block;
+	position: absolute;    
+}
+
+.die-1::after {
+    background: #345;
+    box-shadow: 0 .2em 0 #FFF 
+}
+
+.die-2::after { 
+	box-shadow: -2.3em -2.3em 0 #345, 
+		     2.3em  2.3em 0 #345, 
+		    -2.3em -2.3em 0 #FFF, 
+		     2.3em  2.4em 0 #FFF 
+}
+
+.die-3::after { 
+    background: #345;
+	box-shadow: -2.3em -2.3em 0 #345, 
+		     2.3em  2.3em 0 #345, 
+		    -2.3em -2.3em 0 #FFF, 
+		     2.3em  2.4em 0 #FFF, 
+		         0   .2em 0 #FFF 
+}
+.die-4::after { 
+	box-shadow: -2.3em -2.3em 0 #345, 
+        	     2.3em  2.3em 0 #345, 
+        	    -2.3em  2.3em 0 #345, 
+        	     2.3em -2.3em 0 #345, 
+        	    -2.3em -2.3em 0 #FFF, 
+        	     2.3em  2.4em 0 #FFF, 
+        	    -2.3em  2.4em 0 #FFF, 
+        	     2.3em -2.3em 0 #FFF 
+}
+.die-5::after { 
+	background: #345;
+    box-shadow: -2.3em -2.3em 0 #345, 
+		     2.3em  2.3em 0 #345, 
+		    -2.3em  2.3em 0 #345, 
+		     2.3em -2.3em 0 #345, 
+		    -2.3em -2.2em 0 #FFF, 
+		     2.3em -2.2em 0 #FFF, 
+		     2.3em  2.4em 0 #FFF, 
+		    -2.3em  2.4em 0 #FFF,
+		         0   .2em 0 #FFF 
+}
+
+.die-6::after {
+	box-shadow: -2.3em -2.3em 0 #345,
+		    -2.3em      0 0 #345,
+		    -2.3em  2.3em 0 #345,
+		     2.3em -2.3em 0 #345,
+		     2.3em      0 0 #345,
+		     2.3em  2.3em 0 #345,
+		    -2.3em -2.1em 0 #FFF,
+		    -2.3em   .2em 0 #FFF,
+		    -2.3em  2.4em 0 #FFF,
+		     2.3em  2.4em 0 #FFF,
+		     2.3em   .2em 0 #FFF,
+		     2.3em -2.1em 0 #FFF
+}
+
+.locked {
+    background-color: rgb(235, 235, 228);
+    color: rgb(84, 84, 84);
+}
+
+.die[disabled] {
+    background-color: rgb(235, 235, 228);
+    color: rgb(84, 84, 84);	
+}
